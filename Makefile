@@ -1,30 +1,19 @@
 CFLAGS = -Wall -Wextra -Werror
-
 CLIENT = client
-CLIENTSRC = client.c
-CLIENTOBJ = client.o
-
 SERVER = server
-SERVERSRC = server.c
-SERVEROBJ = server.o
 
-all: $(SERVER) $(CLIENT)
+all: $(CLIENT) $(SERVER)
 
-$(SERVER): $(SERVEROBJ)
-	cc $(CFLAGS) -c $(SERVERSRC)
-	cc $(CFLAGS) $(SERVEROBJ) -o $(SERVER)
+$(CLIENT):
+	cc $(CFLAGS) client.c -o $(CLIENT)
 
-$(CLIENT): $(CLIENTOBJ)
-	cc $(CFLAGS) -c $(CLIENTSRC)
-	cc $(CFLAGS) $(CLIENTOBJ) -o $(CLIENT)
+$(SERVER):
+	cc $(CFLAGS) server.c -o $(SERVER)
 
 clean:
-	rm -f $(CLIENTOBJ)
-	rm -f $(SERVEROBJ)
+	rm -f $(CLIENT) $(SERVER)
 
 fclean: clean
-	rm -f $(CLIENT)
-	rm -f $(SERVER)
 
 re: fclean all
 

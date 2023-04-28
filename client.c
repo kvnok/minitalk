@@ -6,18 +6,19 @@
 /*   By: kkroon <kkroon@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/27 16:52:08 by kkroon        #+#    #+#                 */
-/*   Updated: 2023/01/27 16:52:34 by kkroon        ########   odam.nl         */
+/*   Updated: 2023/04/28 16:58:12 by kkroon        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <limits.h>
 
 int	specialatoi(char *s)
 {
-	int	i;
-	int	num;
+	int		i;
+	long	num;
 
 	i = 0;
 	num = 0;
@@ -31,7 +32,7 @@ int	specialatoi(char *s)
 		if (!(s[i] >= '0' && s[i] <= '9'))
 			return (-1);
 		num = (num * 10) + (s[i] - '0');
-		if (i > 10)
+		if (i > 10 || num > INT_MAX)
 			return (-1);
 		i++;
 	}
